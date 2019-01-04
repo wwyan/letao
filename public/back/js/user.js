@@ -1,6 +1,6 @@
 // 发送ajax请求 获取user数据
 
-;(function () {
+$(function () {
 
     var currentPage = 1;
     render();
@@ -44,4 +44,35 @@
         });
     }
 
-})();
+    // 启用禁用
+    $('.l_content tbody').on('click','.btn',function(){
+        $('#userModal').modal("show");
+    
+        // 获取id 当前状态 根据id 发送ajax请求 修改数据 并重新渲染
+        var id = $(this).parent().data('id');
+        console.log(id);
+    
+        // 获取当前状态 根据btn的颜色判断
+        var isDelete = $(this).hasClass('btn-success') ? 1 : 0;
+    
+        $('#userBtn').off('click').on('click',function(){
+            $.ajax({
+                type: "post",
+                url: "/user/updateUser",
+                dataType: "json",
+                data: {
+                    id: id,
+                    isDelete: isDelete
+                },
+                success: function(res){
+                    if(res.success){
+                        // 隐藏模态框
+                        $('#userModal').modal("hide");
+                        render();
+                        console.log("修改成功");
+                    }
+                }
+            })
+        });
+    });
+});

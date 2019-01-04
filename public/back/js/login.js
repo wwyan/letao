@@ -1,5 +1,5 @@
 
-;(function(){
+$(function(){
     //表单验证
     
     // 用户名不为空
@@ -55,10 +55,10 @@ $('#form').bootstrapValidator({
   
   });
 
-})();
+});
 
 // 
-;(function(){
+$(function(){
 
   $("#form").on('success.form.bv', function (e) {
     e.preventDefault();
@@ -95,4 +95,4 @@ $('#form').bootstrapValidator({
     
   });
 
-})();
+});

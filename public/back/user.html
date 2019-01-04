@@ -104,7 +104,25 @@
         </div>
     </div>
 
-    <!-- 模态框 -->
+    <!-- 启用禁用的模态框 -->
+    <div class="modal fade" id="userModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">温馨提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="red"><i class="glyphicon glyphicon-info-sign"></i>你确定要执行此操作吗?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="userBtn">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- 退出的模态框 -->
     <div class="modal fade" id="logoutModal">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -113,11 +131,11 @@
                     <h4 class="modal-title">温馨提示</h4>
                 </div>
                 <div class="modal-body">
-                    <p><i class="glyphicon glyphicon-info-sign"></i>你确定要退出后台管理系统吗?&hellip;</p>
+                    <p class="red"><i class="glyphicon glyphicon-info-sign"></i>你确定要退出后台管理系统吗?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-primary" id="logoutBtn">确定</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -132,7 +150,7 @@
                 <td>{{v.username}}</td>
                 <td>{{v.mobile}}</td>
                 <td>{{v.isDelete === 1 ? "正常" : "禁用" }}</td>
-                <td>
+                <td data-id="{{v.id}}">
                     {{ if v.isDelete === 1 }}
                     <button class="btn btn-danger">禁用</button>
                     {{ else }}
@@ -153,6 +171,9 @@
     <script src="./lib/artTemplate/template-web.js"></script>
     <!-- 分页 -->
     <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+
+    <script src="./js/isLogin.js"></script>
+
     <script src="./js/common.js"></script>
     <script src="./js/user.js"></script>
 </body>

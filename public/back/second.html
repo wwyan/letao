@@ -1,12 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <!-- 登录验证的css -->
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
+    <!-- 进度条 -->
+    <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./js/user.js">
 </head>
+
 <body>
-    <h4>这是二级分类页面</h4>
+
+    <!-- 侧边栏 -->
+
+    <div class="l_aside">
+        <!-- 标题 -->
+        <div class="brand"><a href="#">黑马19期</a></div>
+        <!-- 头像 -->
+        <div class="user">
+            <img src="./images/default.png" alt="">
+            <p>超级管理员</p>
+        </div>
+
+        <!-- 导航 -->
+        <div class="nav">
+                <ul>
+                    <li>
+                        <a href="user.html">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>用户管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="category">
+                            <i class="glyphicon glyphicon-list"></i>
+                            <span>分类管理</span>
+                        </a>
+                        <div class="child" style="display: block;">
+                            <a href="first.html">一级管理</a>
+                            <a href="second.html" class="current">二级管理</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product.html">
+                            <i class="glyphicon glyphicon-tags"></i>
+                            <span>商品管理</span>
+                        </a>
+                    </li>
+                </ul>
+        </div>
+    </div>
+
+    <!-- 右侧主体 -->
+    <div class="l_main">
+        <!-- 顶部导航 -->
+        <div class="l_topbar">
+            <a href="#" class="pull-left icon_menu"><i class="glyphicon glyphicon-align-justify"></i></a>
+            <a href="#" class="pull-right icon_logout"><i class="glyphicon glyphicon-log-out"></i></a>
+        </div>
+
+        <!-- 下面内容 -->
+        <div class="container-fluid">
+            <!-- 路径导航 -->
+            <ol class="breadcrumb">
+                <li><a href="index.html">管理系统</a></li>
+                <li class="active">分类管理</li>
+                <li class="active">二级分类</li>
+            </ol>
+
+            <div class="l_content">
+                <!-- 添加分类按钮 -->
+                <button class="btn btn-default mb_20" id="addCateBtn">添加分类</button>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width="10%">序号</th>
+                            <th width="30%">一级分类名称</th>
+                            <th width="30%">二级分类名称</th>
+                            <th width="30%">二级分类LOGO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+                <!-- 分页结构 -->
+                <div class="pull-right">
+                    <ul id="paginator"></ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 添加分类的模态框 -->
+    <div class="modal fade" id="addModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">添加分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="请输入一级分类">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" form="form">添加</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- 退出的模态框 -->
+    <div class="modal fade" id="logoutModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">温馨提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="red"><i class="glyphicon glyphicon-info-sign"></i>你确定要退出后台管理系统吗?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="logoutBtn">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 模板 -->
+    <script type="text/html" id="tpl">
+        
+        {{each rows v i}}
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{v.categoryName}}</td>
+                <td>{{v.brandName}}</td>
+                <td><img src="{{v.brandLogo}}" height="50" alt=""></td>
+            </tr>
+        {{/each}}
+    </script>
+
+    <script src="./lib/jquery/jquery.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 登录验证 -->
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <!-- 进度条 -->
+    <script src="./lib/nprogress/nprogress.js"></script>
+    <!-- 模板引擎 -->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 分页 -->
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+
+    <script src="./js/isLogin.js"></script>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/second.js"></script>
 </body>
+
 </html>

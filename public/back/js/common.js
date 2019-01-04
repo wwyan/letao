@@ -13,7 +13,7 @@ $(document).ajaxStop(function(){
 
 
 
-;(function(){
+$(function(){
     // 1 左侧二级菜单
     $('.l_aside .category').click(function(){
         // 下一个兄弟元素 .child 显示
@@ -52,4 +52,4 @@ $(document).ajaxStop(function(){
         })
     });
 
-})();
+});

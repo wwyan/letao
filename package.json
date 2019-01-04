@@ -13,6 +13,7 @@
     "express-session": "~1.14.2",
     "formidable": "*",
     "hbs": "~4.0.0",
+    "jshint": "^2.9.7",
     "moment": "^2.21.0",
     "morgan": "~1.7.0",
     "mysql": "~2.12.0",

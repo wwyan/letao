@@ -29,6 +29,9 @@ ul,ol {
 .mt_150 {
     margin-top: 150px;
 }
+.red {
+    color: #A94442;
+}
 
 /* 左侧 侧边栏 */
 
@@ -40,6 +43,10 @@ ul,ol {
     top: 0;
     left: 0;
     z-index: 999;
+    transition: all 1s;
+}
+.l_aside.hidemenu {
+    left: -180px;
 }
 .l_aside .brand {
     height: 50px;
@@ -78,6 +85,9 @@ ul,ol {
     text-decoration: none;
     border-left: 3px solid transparent;
 }
+.l_aside .nav .child {
+    display: none;
+}
 .l_aside .nav .child a {
     padding-left: 60px;
 }
@@ -95,6 +105,10 @@ ul,ol {
     height: 1000px;
     padding-left: 180px;
     padding-top: 50px;
+    transition: all 1s;
+}
+.l_main.hidemenu {
+    padding-left: 0;
 }
 .l_main .l_topbar {
     height: 50px;
@@ -106,6 +120,10 @@ ul,ol {
     right: 0;
     padding-left: 180px;
     z-index: 66;
+    transition: all 1s;
+}
+.l_main .l_topbar.hidemenu {
+    padding-left: 0;
 }
 .l_main .l_topbar a {
     width: 50px;
@@ -119,4 +137,10 @@ ul,ol {
 /* 右侧下面 */
 .l_main .breadcrumb {
     margin-top: 20px;
+}
+
+.echarts_l,
+.echarts_r {
+    width: 48%;
+    height: 400px;
 }

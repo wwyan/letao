@@ -7,8 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
-
+    <!-- 登录验证的css -->
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
+    <!-- 进度条 -->
+    <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./js/user.js">
 </head>
 
 <body>
@@ -26,30 +30,30 @@
 
         <!-- 导航 -->
         <div class="nav">
-            <ul>
-                <li>
-                    <a href="#" class="current">
-                        <i class="glyphicon glyphicon-user"></i>
-                        <span>用户管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-list"></i>
-                        <span>分类管理</span>
-                    </a>
-                    <div class="child" style="display: none">
-                        <a href="#">一级管理</a>
-                        <a href="#">二级管理</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-tags"></i>
-                        <span>商品管理</span>
-                    </a>
-                </li>
-            </ul>
+                <ul>
+                    <li>
+                        <a href="user.html" class="current">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>用户管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="category">
+                            <i class="glyphicon glyphicon-list"></i>
+                            <span>分类管理</span>
+                        </a>
+                        <div class="child">
+                            <a href="first.html">一级管理</a>
+                            <a href="second.html">二级管理</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product.html">
+                            <i class="glyphicon glyphicon-tags"></i>
+                            <span>商品管理</span>
+                        </a>
+                    </li>
+                </ul>
         </div>
     </div>
 
@@ -63,22 +67,38 @@
 
         <!-- 下面内容 -->
         <div class="container-fluid">
-            <!-- 路径 -->
+            <!-- 路径导航 -->
             <ol class="breadcrumb">
-                <li><a href="#">管理系统</a></li>
+                <li><a href="index.html">管理系统</a></li>
                 <li class="active">用户管理</li>
             </ol>
 
             <div class="l_content">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <th width="10%">序号</th>
-                        <th width="20%">用户名</th>
-                        <th width="30%">手机号</th>
-                        <th width="20%">状态</th>
-                        <th width="20%">操作</th>
+                        <tr>
+                            <th width="10%">序号</th>
+                            <th width="20%">用户名</th>
+                            <th width="30%">手机号</th>
+                            <th width="20%">状态</th>
+                            <th width="20%">操作</th>
+                        </tr>
                     </thead>
+                    <tbody>
+                        <tr>
+                            <td>111</td>
+                            <td>111</td>
+                            <td>111</td>
+                            <td>111</td>
+                            <td>111</td>
+                        </tr>
+                    </tbody>
                 </table>
+                <!-- 分页结构 -->
+                <div class="pull-right">
+                    <ul id="paginator"></ul>
+                </div>
+
             </div>
 
         </div>
@@ -103,12 +123,38 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
+    <!-- 模板 -->
+    <script type="text/html" id="tpl">
+        
+        {{each rows v i}}
+            <tr>
+                <td>{{v.id}}</td>
+                <td>{{v.username}}</td>
+                <td>{{v.mobile}}</td>
+                <td>{{v.isDelete === 1 ? "正常" : "禁用" }}</td>
+                <td>
+                    {{ if v.isDelete === 1 }}
+                    <button class="btn btn-danger">禁用</button>
+                    {{ else }}
+                    <button class="btn btn-success">启用</button>
+                    {{ /if }}
+                </td>
+            </tr>
+        {{/each}}
+    </script>
 
     <script src="./lib/jquery/jquery.min.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-
+    <!-- 登录验证 -->
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <!-- 进度条 -->
+    <script src="./lib/nprogress/nprogress.js"></script>
+    <!-- 模板引擎 -->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 分页 -->
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
     <script src="./js/common.js"></script>
+    <script src="./js/user.js"></script>
 </body>
 
 </html>

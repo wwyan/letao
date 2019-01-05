@@ -22,7 +22,22 @@ $(function(){
                 
                 var htmlStr = template('tpl',res);
                 $('.l_content tbody').html(htmlStr);
-    
+                
+                // 分页
+                $('#paginator').bootstrapPaginator({
+                    // 配置版本
+                    bootstrapMajorVersion: 3,
+                    // 当前页
+                    currentPage: res.page,
+                    // 总页数
+                    totalPages: Math.ceil(res.total/res.size),
+
+                    onPageClicked: function(a , b, c, page){
+                        currentPage = page;
+                        render();
+                    }
+
+                })
             }
         })
     }

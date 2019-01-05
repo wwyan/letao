@@ -3,7 +3,7 @@
  */
 
 $(function() {
-
+  "use strict"
   // 当前页
   var currentPage = 1;
   // 每页多少条

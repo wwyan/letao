@@ -228,7 +228,6 @@ $(function() {
 
     // 表单提交得到的参数字符串
     var params = $('#form').serialize();
-
     // 拼接上所有的图片参数
     params += "&picArr=" + JSON.stringify( picArr );
 

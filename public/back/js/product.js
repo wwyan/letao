@@ -1,7 +1,7 @@
 
 $(function(){
     // 发送ajax 获取数据 并渲染
-    "use strict"
+    
     var currentPage = 1;
     var pageSize = 2;
     var picArr = [];
@@ -31,7 +31,7 @@ $(function(){
                     onPageClicked: function(a,b,c, page){
 
                         currentPage = page;
-                        render()
+                        render();
                     }
                 })
             }
@@ -114,7 +114,7 @@ $(function(){
         }
     });
 
-    // 表单验证
+    // 表单验证bootstrapValidator
     $('#form').bootstrapValidator({
         excluded: [],
 
@@ -123,61 +123,69 @@ $(function(){
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
-
+        
         fields: {
             brandId:{
-                validator: {
+                validators: {
                     notEmpty: {
                         message: "请选择二级分类"
                     }
                 }
             },
             proName:{
-                validator: {
+                validators: {
                     notEmpty: {
                         message: "请输入商品名称"
                     }
                 }
             },
             proDesc:{
-                validator: {
+                validators: {
                     notEmpty: {
                         message: "请输入商品描述"
                     }
                 }
             },
             proNum:{
-                validator: {
+                validators: {
                     notEmpty: {
                         message: "请输入商品库存"
+                    },
+                    regexp: {
+                        regexp: /^[1-9]\d*$/,
+                        message: '商品库存格式, 必须是非零开头的数字'
                     }
                 }
             },
             proSize:{
-                validator: {
+                validators: {
                     notEmpty: {
                         message: "请输入商品尺码"
+                    },
+                    regexp: {
+                        regexp: /^\d{2}-\d{2}$/,
+                        message: '尺码格式, 必须是 32-40'
                     }
                 }
             },
             proOldPrice:{
-                validator: {
+                validators: {
                     notEmpty: {
                         message: "请输入商品原价"
                     }
                 }
             },
             proPrice:{
-                validator: {
+                validators: {
                     notEmpty: {
                         message: "请输入商品现价"
                     }
                 }
             },
             picStatus: {
-                validator: {
+                validators: {
                     notEmpty: {
-                        message: "请上传图片"
+                        message: "请上传3张图片"
                     }
                 }
             }
@@ -189,22 +197,40 @@ $(function(){
     $('#form').on('success.form.bv',function(e){
         e.preventDefault();
 
+        // picArr    JSON.stringify后的数组字符串(格式见备注)
+        var info = $('#form').serialize();
+        console.log(info);
+        // brandId=6&proName=%E6%98%AF&proDesc=%E6%98%AF
+        // &proNum=%E9%98%BF%E8%90%A8%E5%BE%B7&proSize=%E9%98%BF%E8%90%A8%E5%BE%B7
+        // &proOldPrice=%E9%98%BF%E8%90%A8%E5%BE%B7
+        // &proPrice=3%E4%BA%BA
+        // &picStatus=
+
+        info += "&picArr=" + JSON.stringify(picArr);
+        console.log(info);
         // 发送ajax
         $.ajax({
             type: 'post',
             url: '/product/addProduct',
             dataType: 'json',
-            data: $('#form').serialize(),
+            data: info,
             success: function(res){
                 console.log(res);
                 // 关闭模态框
                 $('#addProModal').modal('hide');
                 
+                // 重置表单状态和 内容
+                $('#form').data('bootstrapValidator').resetForm(true);
+
                 currentPage = 1;
                 render();
 
-                // 重置表单状态和 内容
-                $('#form').data('bootstrapValidator').resetForm(true);
+                // 删除图片
+                $('#imgBox img').remove();
+                // 重置数组
+                picArr = [];
+                // 重置下拉菜单 二级分类
+                $('#dropdownText').text('请选择二级分类');
             }
         })
 

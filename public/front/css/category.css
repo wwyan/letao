@@ -1,0 +1,46 @@
+.l_category_left {
+  width: 90px;
+  height: 100%;
+  background-color: #fff;
+  float: left;
+  position: relative;
+}
+.l_category_left li a {
+  display: block;
+  width: 90px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #E3E4E5;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.l_category_left li a.current {
+  background-color: #fff;
+  border-right: none;
+}
+.l_category_right {
+  overflow: hidden;
+  height: 100%;
+  background-color: #fff;
+  position: relative;
+}
+
+.l_category_right li {
+  float: left;
+  width: 33.3%;
+}
+.l_category_right li a {
+  display: block;
+
+}
+.l_category_right li a img {
+  width: 70px;
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+.l_category_right li a p {
+  text-align: center;
+}

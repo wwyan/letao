@@ -8,6 +8,9 @@ ul,ol {
   margin: 0;
   padding: 0;
 }
+.tips {
+  padding: 0 10px;
+}
 
 .l_container {
   width: 100%;
@@ -83,6 +86,12 @@ ul,ol {
   display: block;
   padding-top: 8px;
   color: #fff;
+}
+.l_footer li a.current {
+  color: orange;
+}
+.l_footer li a.current p {
+  color: orange;  
 }
 .l_footer li a p {
   color: #fff;

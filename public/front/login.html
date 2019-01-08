@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css">
   <link rel="stylesheet" href="./lib/mui/css/mui.min.css">
   <link rel="stylesheet" href="./css/common.css">
-  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/login.css">
 
 </head>
 <body>
@@ -24,9 +24,20 @@
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
           
-          
-
-          
+          <form class="mui-input-group" id="form">
+            <div class="mui-input-row">
+                <label>用户名</label>
+            <input type="text" class="mui-input-clear" name="username" placeholder="请输入用户名">
+            </div>
+            <div class="mui-input-row">
+                <label>密码</label>
+                <input type="password" name="password" class="mui-input-password" placeholder="请输入密码">
+            </div>
+            <div class="mui-button-row">
+                <button type="button" class="mui-btn mui-btn-primary" id="loginBtn" >确认</button>
+                <button type="reset" class="mui-btn mui-btn-danger">重置</button>
+            </div>
+          </form>
 
         </div>
 
@@ -68,6 +79,7 @@
   <script src="./lib/zepto/zepto.min.js"></script>
   <script src="./lib/mui/js/mui.js"></script>
   <script src="./js/common.js"></script>
+  <script src="./js/login.js"></script>
 
 </body>
 </html>

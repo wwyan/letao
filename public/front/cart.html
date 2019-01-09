@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,12 @@
   <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css">
   <link rel="stylesheet" href="./lib/mui/css/mui.min.css">
   <link rel="stylesheet" href="./css/common.css">
-  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/cart.css">
 
 </head>
+
 <body>
-  
+
   <div class="l_container">
     <div class="l_header">
       <a href="javascript: history.go(-1)" class="icon_left"><i class="mui-icon mui-icon-back"></i></a>
@@ -23,10 +25,12 @@
     <div class="l_main">
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
-          
-          
 
-          
+
+          <ul class="mui-table-view">
+            
+          </ul>
+
 
         </div>
 
@@ -65,9 +69,49 @@
 
   </div>
 
+  <!-- 模板 -->
+  <script type="text/html" id="cartTpl">
+    {{ each arr v i}}
+    <li class="mui-table-view-cell">
+      <div class="mui-slider-right mui-disabled">
+        <a data-id="{{v.id}}" class="mui-btn mui-btn-danger mui-icon mui-icon-trash btn-delete"></a>
+      </div>
+      <div class="mui-slider-handle">
+        <div class="mui-table-cell">
+          <!-- 图片 -->
+          <div class="cart_img">
+            <img src="{{v.pic[0].picAddr}}" alt="">
+            <!-- 复选框 -->
+            <input type="checkbox">
+          </div>
+          <!-- 信息 -->
+          <div class="cart_info">
+            <p class="mui-ellipsis-2">
+              {{v.proName}}
+            </p>
+            <p>
+              <span>
+                <span class="price">&yen;{{v.price}}</span>
+                <span class="oldPrice">&yen;{{v.oldPrice}}</span>
+              </span>
+              <span class="mui-pull-right">{{v.num}}双</span>
+            </p>
+            <p>
+              <span>鞋码: {{v.size}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </li>
+    {{ /each}}
+  </script>
+
   <script src="./lib/zepto/zepto.min.js"></script>
   <script src="./lib/mui/js/mui.js"></script>
+  <script src="./lib/artTemplate/template-web.js"></script>
   <script src="./js/common.js"></script>
+  <script src="./js/cart.js"></script>
 
 </body>
+
 </html>

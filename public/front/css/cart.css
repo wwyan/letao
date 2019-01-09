@@ -1,0 +1,18 @@
+
+.cart_img {
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+.cart_info {
+  overflow: hidden;
+  height: 90px;
+  padding: 0 10px;
+}
+
+.price {
+  color: red;
+}
+.oldPrice {
+  text-decoration: line-through;
+}

@@ -129,6 +129,9 @@ $(function() {
 
     // 清空 input
     $('.search_input').val("");
+
+    // 跳转到搜索列表页   地址?key=value&key1=value1
+    location.href = "searchList.html?key=" + key;
   })
 
 })
